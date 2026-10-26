@@ -33,13 +33,27 @@ Tick **Show this photo big, on its own row** for your favorites; the rest arrang
 - For videos, add a **Video still** (a screenshot) and keep files under 20 MB.
 - Turn on **Play the video silently on a loop** only for clips without sound.
 
+## Change what part of a photo shows (recrop)
+Some photos are trimmed to a set shape so they line up neatly: album covers on the Photography
+page, card images on the Brand Projects page, the four work tiles and the cover photo on the
+home page. Each one has a **crop** box right under the photo in the editor:
+- **Side to side** and **Top to bottom** choose which part of the photo stays in view. For
+  example, pick **Top** if heads are being cut off.
+- **Zoom in** crops tighter, so the subject fills more of the frame.
+
+Save, wait about a minute, then refresh the page to check. Your original photo is never
+changed, so you can always set it back to Center, Middle and No zoom.
+
+If a setting seems to do nothing, the photo already fits that way. A wide photo in a wide frame
+can only move side to side once it's zoomed in, for example.
+
 ## Merch and illustrations
 **Merch designs** and **Illustrations & designs** each hold one list. Add, remove or reorder
 entries the same way as album photos.
 
 ## Words on the home page
-**Home page** holds your introduction, the blue quote, the four work tiles, your About text,
-video and skills. In the About box, leave an empty line between paragraphs.
+**Home page** holds your introduction, the blue quote (leave it empty to hide it), the four
+work tiles, your About text, video and skills. In the About box, leave an empty line between paragraphs.
 
 ## Contact details
 **Contact & site details** holds your email, phone, location and LinkedIn link. These appear

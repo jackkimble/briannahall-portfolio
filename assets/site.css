@@ -211,25 +211,6 @@ main > .quote { max-width: none; padding-left: 0; padding-right: 0; }
 .crumb a::before { content: "← "; }
 .crumb a:hover { color: var(--ink); }
 
-/* ------------------------------------------------------------------ albums */
-.albums {
-  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(36px, 5vw, 72px) clamp(20px, 4vw, 56px); align-items: start;
-  padding-bottom: clamp(72px, 9vw, 130px);
-}
-.album-card:nth-child(even) { margin-top: clamp(0px, 7vw, 100px); }
-.album-card a { display: grid; gap: 14px; text-decoration: none; }
-.album-card__img { display: block; overflow: hidden; border-radius: var(--radius); }
-.album-card__img img { width: 100%; transition: transform .6s ease; }
-.album-card a:hover img { transform: scale(1.025); }
-.album-card__meta { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 18px; }
-.album-card__title { font-family: var(--font-display); font-size: var(--fs-h3); }
-.album-card__count { font-size: var(--fs-small); color: var(--ink-soft); font-variant-numeric: tabular-nums; }
-@media (max-width: 640px) {
-  .albums { grid-template-columns: 1fr; }
-  .album-card:nth-child(n) { margin-top: 0; }
-}
-
 /* ----------------------------------------------------------------- gallery */
 .gallery { display: grid; gap: var(--gap); padding-bottom: clamp(56px, 8vw, 110px); }
 .gallery__row { display: flex; gap: var(--gap); align-items: flex-start; width: 100%; max-width: min(100%, calc(var(--row-ratio) * 78vh)); margin-inline: auto; }
@@ -251,20 +232,24 @@ main > .quote { max-width: none; padding-left: 0; padding-right: 0; }
 @media (max-width: 1100px) { .pinboard { column-count: 2; } }
 @media (max-width: 620px) { .pinboard { column-count: 1; } }
 
-/* ---------------------------------------------------------------- projects */
-.projects {
+/* ------------------------------------------- cards (photo albums, brand projects) */
+/* A level two-column grid. Every cover is trimmed to the same 3:2 shape; each one's crop
+   (which part shows, and zoom) is set in the editor and arrives as an inline object-position. */
+.cards {
   display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: clamp(32px, 5vw, 64px) clamp(20px, 4vw, 48px);
   padding-bottom: clamp(72px, 9vw, 130px);
 }
-.project-card a { display: grid; gap: 14px; text-decoration: none; }
-.project-card__img { display: block; overflow: hidden; border-radius: var(--radius); background: var(--periwinkle-soft); }
-.project-card__img img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; object-position: 50% 20%; transition: transform .6s ease; }
-.project-card a:hover img { transform: scale(1.025); }
-.project-card__title { font-family: var(--font-display); font-size: var(--fs-h3); }
-.project-card__title::after { content: " →"; font-family: var(--font-body); font-size: .7em; opacity: 0; transition: opacity .2s ease; }
-.project-card a:hover .project-card__title::after { opacity: 1; }
-@media (max-width: 640px) { .projects { grid-template-columns: 1fr; } }
+.card a { display: grid; gap: 14px; text-decoration: none; }
+.card__img { display: block; overflow: hidden; border-radius: var(--radius); background: var(--periwinkle-soft); }
+.card__img img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; object-position: 50% 50%; transition: transform .6s ease; }
+.card a:hover img { transform: scale(1.025); }
+.card__meta { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 18px; }
+.card__title { font-family: var(--font-display); font-size: var(--fs-h3); }
+.card__title::after { content: " →"; font-family: var(--font-body); font-size: .7em; opacity: 0; transition: opacity .2s ease; }
+.card a:hover .card__title::after { opacity: 1; }
+.card__count { font-size: var(--fs-small); color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+@media (max-width: 640px) { .cards { grid-template-columns: 1fr; } }
 
 /* ------------------------------------------------------------------- story */
 .project-intro { padding-top: 0; font-size: 1.125rem; }

@@ -4,6 +4,10 @@ card_title: Custom Race Suits
 order: 1
 card_image: /media/projects/race-suits/team.webp
 card_alt: Drivers in custom race suits standing with the car on the grass
+card_crop:
+  x: center
+  y: upper
+  zoom: none
 sections:
   - text: During the 2026 school year, I got the amazing opportunity to design our
       drivers’ custom race suits for our upcoming competition in Michigan. This

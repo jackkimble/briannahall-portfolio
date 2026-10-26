@@ -59,6 +59,10 @@ python -m http.server -d _site 8000
   copies and lets each visitor’s browser pick the right one.
 - Album and merch photos are arranged into rows automatically by shape. A photo marked
   “Show this photo big” gets its own row.
+- Photos trimmed to a fixed shape (album covers, project cards, home tiles, home cover) take a
+  crop group from the editor: `x` (far-left … far-right), `y` (top … bottom) and `zoom`
+  (none, little, more, lots). Numbers also work in the content files: 0–100 for position,
+  1–4 for zoom. Zoom is a real crop made at build time, so zoomed images stay sharp.
 - Resized copies are cached in `.cache/` (GitHub keeps the cache between runs), so only new
   photos are processed.
 

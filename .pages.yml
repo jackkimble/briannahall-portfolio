@@ -22,6 +22,54 @@ content:
         label: Cover photo description
         type: string
         description: A few words describing the photo, read aloud to people using screen readers.
+      - name: cover_crop
+        label: Cover photo crop
+        type: object
+        description: The cover photo is trimmed to fit its wavy frame. Choose which part stays in view, or zoom in to crop tighter. If a setting seems to do nothing, the photo already fits that way; zoom in first.
+        fields:
+          - name: x
+            label: Side to side
+            type: select
+            options:
+              values:
+                - name: center
+                  label: Center
+                - name: far-left
+                  label: Far left
+                - name: left
+                  label: Left of center
+                - name: right
+                  label: Right of center
+                - name: far-right
+                  label: Far right
+          - name: y
+            label: Top to bottom
+            type: select
+            options:
+              values:
+                - name: middle
+                  label: Middle
+                - name: top
+                  label: Top
+                - name: upper
+                  label: Upper part
+                - name: lower
+                  label: Lower part
+                - name: bottom
+                  label: Bottom
+          - name: zoom
+            label: Zoom in
+            type: select
+            options:
+              values:
+                - name: none
+                  label: No zoom
+                - name: little
+                  label: A little (125%)
+                - name: more
+                  label: More (150%)
+                - name: lots
+                  label: A lot (200%)
       - name: intro
         label: Introduction
         type: text
@@ -77,6 +125,54 @@ content:
                   label: Fill the tile
                 - name: contain
                   label: Show the whole image
+          - name: image_crop
+            label: Tile image crop
+            type: object
+            description: Used when Image fit is “Fill the tile”. Choose which part of the image stays in the square, or zoom in. If a setting seems to do nothing, the photo already fits that way; zoom in first.
+            fields:
+              - name: x
+                label: Side to side
+                type: select
+                options:
+                  values:
+                    - name: center
+                      label: Center
+                    - name: far-left
+                      label: Far left
+                    - name: left
+                      label: Left of center
+                    - name: right
+                      label: Right of center
+                    - name: far-right
+                      label: Far right
+              - name: y
+                label: Top to bottom
+                type: select
+                options:
+                  values:
+                    - name: middle
+                      label: Middle
+                    - name: top
+                      label: Top
+                    - name: upper
+                      label: Upper part
+                    - name: lower
+                      label: Lower part
+                    - name: bottom
+                      label: Bottom
+              - name: zoom
+                label: Zoom in
+                type: select
+                options:
+                  values:
+                    - name: none
+                      label: No zoom
+                    - name: little
+                      label: A little (125%)
+                    - name: more
+                      label: More (150%)
+                    - name: lots
+                      label: A lot (200%)
       - name: about_heading
         label: About heading
         type: string
@@ -153,6 +249,54 @@ content:
       - name: cover_alt
         label: Cover photo description
         type: string
+      - name: cover_crop
+        label: Cover photo crop
+        type: object
+        description: On the Photography page every cover is trimmed to the same shape. Choose which part of the photo stays in view, or zoom in to crop tighter. If a setting seems to do nothing, the photo already fits that way; zoom in first.
+        fields:
+          - name: x
+            label: Side to side
+            type: select
+            options:
+              values:
+                - name: center
+                  label: Center
+                - name: far-left
+                  label: Far left
+                - name: left
+                  label: Left of center
+                - name: right
+                  label: Right of center
+                - name: far-right
+                  label: Far right
+          - name: y
+            label: Top to bottom
+            type: select
+            options:
+              values:
+                - name: middle
+                  label: Middle
+                - name: top
+                  label: Top
+                - name: upper
+                  label: Upper part
+                - name: lower
+                  label: Lower part
+                - name: bottom
+                  label: Bottom
+          - name: zoom
+            label: Zoom in
+            type: select
+            options:
+              values:
+                - name: none
+                  label: No zoom
+                - name: little
+                  label: A little (125%)
+                - name: more
+                  label: More (150%)
+                - name: lots
+                  label: A lot (200%)
       - name: intro
         label: Introduction (optional)
         type: text
@@ -216,6 +360,54 @@ content:
       - name: card_alt
         label: Card image description
         type: string
+      - name: card_crop
+        label: Card image crop
+        type: object
+        description: On the Brand Projects page every card image is trimmed to the same shape. Choose which part stays in view, or zoom in to crop tighter. If a setting seems to do nothing, the photo already fits that way; zoom in first.
+        fields:
+          - name: x
+            label: Side to side
+            type: select
+            options:
+              values:
+                - name: center
+                  label: Center
+                - name: far-left
+                  label: Far left
+                - name: left
+                  label: Left of center
+                - name: right
+                  label: Right of center
+                - name: far-right
+                  label: Far right
+          - name: y
+            label: Top to bottom
+            type: select
+            options:
+              values:
+                - name: middle
+                  label: Middle
+                - name: top
+                  label: Top
+                - name: upper
+                  label: Upper part
+                - name: lower
+                  label: Lower part
+                - name: bottom
+                  label: Bottom
+          - name: zoom
+            label: Zoom in
+            type: select
+            options:
+              values:
+                - name: none
+                  label: No zoom
+                - name: little
+                  label: A little (125%)
+                - name: more
+                  label: More (150%)
+                - name: lots
+                  label: A lot (200%)
       - name: page_style
         label: Page style
         type: select

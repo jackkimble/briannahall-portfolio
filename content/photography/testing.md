@@ -3,6 +3,10 @@ title: Testing
 order: 2
 cover: /media/photography/testing/cover.webp
 cover_alt: Driver in AME25 on the test lot
+cover_crop:
+  x: center
+  y: middle
+  zoom: none
 photos:
   - image: /media/photography/testing/testing-01.webp
     alt: Driver in a black helmet seated in the car

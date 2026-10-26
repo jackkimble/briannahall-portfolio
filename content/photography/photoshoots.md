@@ -3,6 +3,10 @@ title: Photoshoots
 order: 3
 cover: /media/photography/photoshoots/cover.webp
 cover_alt: SAE and Texas A&M logos on the nose, lit in red and blue
+cover_crop:
+  x: center
+  y: middle
+  zoom: none
 photos:
   - image: /media/photography/photoshoots/photoshoots-01.webp
     alt: The car lit in purple and blue studio light

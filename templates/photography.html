@@ -6,14 +6,14 @@
   <h1 class="page-title">{{ section.title | softbreak }}</h1>
   {% if section.blurb %}<p class="page-lede">{{ section.blurb }}</p>{% endif %}
 </header>
-<div class="albums">
+<div class="cards">
   {% for album in albums %}
-  <article class="album-card">
+  <article class="card">
     <a href="{{ url('photography/' ~ album.slug) }}">
-      <span class="album-card__img">{{ img(album.cover, album.cover_alt, sizes="(min-width: 900px) 46vw, 92vw") }}</span>
-      <span class="album-card__meta">
-        <span class="album-card__title">{{ album.title }}</span>
-        <span class="album-card__count">{{ album.count }} photograph{{ '' if album.count == 1 else 's' }}</span>
+      <span class="card__img">{{ img(album.cover, album.cover_alt, sizes="(min-width: 1360px) 616px, (min-width: 641px) 46vw, 92vw", crop=album.cover_crop or {}, focus=(50, 50)) }}</span>
+      <span class="card__meta">
+        <span class="card__title">{{ album.title }}</span>
+        <span class="card__count">{{ album.count }} photograph{{ '' if album.count == 1 else 's' }}</span>
       </span>
     </a>
   </article>

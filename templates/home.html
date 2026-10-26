@@ -14,7 +14,7 @@
   </div>
   {% if home.cover_image %}
   <figure class="cover__photo">
-    {{ img(home.cover_image, home.cover_alt, sizes="(min-width: 900px) 40vw, 92vw", loading="eager", priority=True) }}
+    {{ img(home.cover_image, home.cover_alt, sizes="(min-width: 900px) 40vw, 92vw", loading="eager", priority=True, crop=home.cover_crop or {}, focus=(55, 50)) }}
   </figure>
   {% endif %}
 </section>
@@ -35,7 +35,7 @@
     {% set w = work[key] %}
     <article class="work-item">
       <a class="work-item__link" href="{{ href }}">
-        {% if w.image %}<span class="work-item__img{% if w.image_fit == 'contain' %} work-item__img--contain{% endif %}">{{ img(w.image, w.image_alt, sizes="(min-width: 1000px) 22vw, (min-width: 560px) 46vw, 92vw") }}</span>{% endif %}
+        {% if w.image %}<span class="work-item__img{% if w.image_fit == 'contain' %} work-item__img--contain{% endif %}">{{ img(w.image, w.image_alt, sizes="(min-width: 1000px) 22vw, (min-width: 560px) 46vw, 92vw", crop=(none if w.image_fit == 'contain' else (w.image_crop or {}))) }}</span>{% endif %}
         <span class="work-item__title">{{ w.title }}</span>
       </a>
       {% if w.blurb %}<p class="work-item__blurb">{{ w.blurb }}</p>{% endif %}

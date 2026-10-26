@@ -43,6 +43,13 @@ WEBP_QUALITY = 82
 IMAGE_EXT = {".jpg", ".jpeg", ".png", ".webp", ".tif", ".tiff", ".bmp", ".heic"}
 COPY_EXT = {".svg", ".gif"}     # served exactly as uploaded
 
+# Crop settings chosen in the editor. Each spot where a photo is trimmed to a fixed shape
+# (cards, tiles, the home cover) has a crop group: which part stays in view, and a zoom.
+# Numbers (0–100 for position, 1–4 for zoom) also work when typed into a content file.
+CROP_X = {"far-left": 0, "left": 25, "center": 50, "right": 75, "far-right": 100}
+CROP_Y = {"top": 0, "upper": 25, "middle": 50, "lower": 75, "bottom": 100}
+CROP_ZOOM = {"none": 1, "little": 1.25, "more": 1.5, "lots": 2}
+
 SECTIONS = {
     "photography": ("photography/", "Photography"),
     "brand-projects": ("brand-projects/", "Brand Projects"),
@@ -94,6 +101,27 @@ def load_collection(folder: Path) -> list[dict]:
     return items
 
 
+def crop_values(crop, default=(50, 50)) -> tuple[float, float, float]:
+    """Turn an editor crop group into (x %, y %, zoom). Blank settings keep the default."""
+    crop = crop if isinstance(crop, dict) else {}
+
+    def pick(value, names, fallback, low, high):
+        if value is None or value == "":
+            return fallback
+        key = str(value).strip().lower()
+        if key in names:
+            return names[key]
+        try:
+            number = float(key.rstrip("%"))
+        except ValueError:
+            return fallback
+        return min(max(number, low), high)
+
+    return (pick(crop.get("x"), CROP_X, default[0], 0, 100),
+            pick(crop.get("y"), CROP_Y, default[1], 0, 100),
+            pick(crop.get("zoom"), CROP_ZOOM, 1, 1, 4))
+
+
 def check_media(content) -> None:
     """Stop early, naming every photo or video the content uses that isn't in media/."""
     found: list[str] = []
@@ -141,10 +169,17 @@ class MediaPipeline:
     def is_video(self, src: str) -> bool:
         return Path(src).suffix.lower() in {".mp4", ".webm", ".mov", ".m4v"}
 
-    def image(self, src: str) -> dict:
-        """Return {'src','srcset','w','h'} with paths relative to the site root."""
-        if src in self.done:
-            return self.done[src]
+    def image(self, src: str, zoom: float = 1, fx: float = 50, fy: float = 50) -> dict:
+        """Return {'src','srcset','w','h'} with paths relative to the site root.
+
+        zoom > 1 trims the photo to 1/zoom of its size before resizing, with the kept window
+        placed at fx/fy percent of the spare room. Paired with the same object-position in
+        CSS, this matches a zoom around that point, but stays sharp.
+        """
+        zoomed = zoom > 1
+        key = f"{src}|{zoom:g}|{fx:g}|{fy:g}" if zoomed else src
+        if key in self.done:
+            return self.done[key]
         path = self.source(src)
         if not path.exists():
             raise SystemExit(f"Missing file: {src} (looked for {path})")
@@ -158,14 +193,21 @@ class MediaPipeline:
                 with Image.open(path) as im:
                     w, h = im.size
             info = {"src": target.relative_to(self.out).as_posix(), "srcset": "", "w": w, "h": h}
-            self.done[src] = info
+            self.done[key] = info
             return info
 
         data = path.read_bytes()
         digest = hashlib.sha1(data).hexdigest()[:10]
         stem = re.sub(r"[^a-z0-9-]+", "-", path.stem.lower()).strip("-") or "image"
+        if zoomed:
+            stem += f"-z{round(zoom * 100)}x{round(fx)}y{round(fy)}"
         with Image.open(path) as im:
             im = ImageOps.exif_transpose(im)
+            if zoomed:
+                W0, H0 = im.size
+                cw, ch = W0 / zoom, H0 / zoom
+                left, top = (W0 - cw) * fx / 100, (H0 - ch) * fy / 100
+                im = im.crop((round(left), round(top), round(left + cw), round(top + ch)))
             W, H = im.size
             widths = sorted({w for w in self.widths if w < W} | {min(W, MAX_WIDTH if self.widths == WIDTHS else 1600)})
             files = []
@@ -189,7 +231,7 @@ class MediaPipeline:
             "h": H,
             "largest": files[-1][1],
         }
-        self.done[src] = info
+        self.done[key] = info
         return info
 
     def file(self, src: str) -> str:
@@ -302,10 +344,17 @@ def build(preview: bool = False, out: Path | None = None) -> Path:
         def asset(p: str) -> str:
             return prefix + p
 
-        def img(src, alt="", sizes="100vw", cls="", loading="lazy", priority=False, attrs=""):
+        def img(src, alt="", sizes="100vw", cls="", loading="lazy", priority=False, attrs="", crop=None, focus=(50, 50)):
+            """crop: the editor's crop group for a photo trimmed to a fixed shape ({} = defaults).
+            focus: the spot kept in view when the editor leaves the position blank."""
             if not src:
                 return Markup("")
-            info = media.image(src)
+            if crop is not None:
+                x, y, zoom = crop_values(crop, focus)
+                info = media.image(src, zoom, x, y)
+                attrs = f'style="object-position: {x:g}% {y:g}%"' + (f" {attrs}" if attrs else "")
+            else:
+                info = media.image(src)
             alt_attr = escape(alt or "")
             cls_attr = f' class="{escape(cls)}"' if cls else ""
             dims = f' width="{info["w"]}" height="{info["h"]}"' if info.get("w") else ""

@@ -4,6 +4,10 @@ card_title: Team Instagram
 order: 3
 card_image: /media/projects/team-instagram/profile.webp
 card_alt: Screenshot of the team’s Instagram profile grid
+card_crop:
+  x: center
+  y: upper
+  zoom: none
 sections:
   - text: "Working on this team has taught me a lot on how social media works, and
       how important it is to listen to your viewers. When working on our team

@@ -3,6 +3,10 @@ title: 2025 Competition
 order: 4
 cover: /media/photography/2025-competition/cover.webp
 cover_alt: The speedway scoring tower above the team tents
+cover_crop:
+  x: center
+  y: middle
+  zoom: none
 photos:
   - image: /media/photography/2025-competition/2025-competition-01.webp
     alt: An engineer leaning over the car in the paddock

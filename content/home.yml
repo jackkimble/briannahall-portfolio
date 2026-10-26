@@ -1,5 +1,9 @@
 cover_image: /media/home/bluebonnets.webp
 cover_alt: Texas bluebonnets in bloom
+cover_crop:
+  x: center
+  y: middle
+  zoom: none
 intro: Howdy! My name is Brianna Hall, I’m a fourth year marketing student at
   Texas A&M University with a concentration in advertising strategy, and I
   currently work in graphic design. I have a passion for brand marketing,
@@ -12,17 +16,29 @@ work:
       with Texas A&M Formula Electric.
     image: /media/photography/photoshoots/photoshoots-07.webp
     image_alt: The car lit in purple and blue studio light
+    image_crop:
+      x: center
+      y: middle
+      zoom: none
   - section: brand-projects
     title: Brand Projects
     blurb: Team guidelines, physical media designs, the team Instagram and custom
       race suits.
     image: /media/projects/race-suits/team.webp
     image_alt: Drivers in custom race suits standing with the car on the grass
+    image_crop:
+      x: center
+      y: middle
+      zoom: none
   - section: merch
     title: Merch Designs
     blurb: Shirts and race gear designed for team competitions.
     image: /media/merch/merch-01.webp
     image_alt: Back of a black team shirt with a stamp-style race car graphic
+    image_crop:
+      x: center
+      y: middle
+      zoom: none
   - section: illustrations
     title: Illustrations
     blurb: Posters, apparel graphics, badges and cards.

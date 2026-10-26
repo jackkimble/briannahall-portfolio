@@ -4,6 +4,10 @@ card_title: Physical Media Designs
 order: 2
 card_image: /media/projects/physical-media/banners.webp
 card_alt: A guest reading the team’s Rollout banners
+card_crop:
+  x: center
+  y: upper
+  zoom: none
 sections:
 - text: |-
     During our team’s 2026 design cycle, I was in charge of creating three banners that would be presented at our team’s Rollout. Rollout is an annual event where the engineers unveil the new car, and every year, Texas A&M Formula Electric’s Marketing Team tries to go above and beyond. I wanted to create these banners so guests who may know absolutely nothing about the team can quickly glance at them and understand the different parts of the team and our values.

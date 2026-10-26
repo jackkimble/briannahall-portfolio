@@ -6,12 +6,12 @@
   <h1 class="page-title">{{ section.title | softbreak }}</h1>
   {% if section.blurb %}<p class="page-lede">{{ section.blurb }}</p>{% endif %}
 </header>
-<div class="projects">
+<div class="cards">
   {% for project in projects %}
-  <article class="project-card">
+  <article class="card">
     <a href="{{ url('brand-projects/' ~ project.slug) }}">
-      <span class="project-card__img">{{ img(project.card_image, project.card_alt, sizes="(min-width: 900px) 30vw, 92vw") }}</span>
-      <span class="project-card__title">{{ project.card_title or project.title }}</span>
+      <span class="card__img">{{ img(project.card_image, project.card_alt, sizes="(min-width: 1360px) 616px, (min-width: 641px) 46vw, 92vw", crop=project.card_crop or {}, focus=(50, 20)) }}</span>
+      <span class="card__meta"><span class="card__title">{{ project.card_title or project.title }}</span></span>
     </a>
   </article>
   {% endfor %}

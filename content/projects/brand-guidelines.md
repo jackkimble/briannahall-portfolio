@@ -4,6 +4,10 @@ card_title: Team Guidelines
 order: 2
 card_image: /media/projects/brand-guidelines/cover.webp
 card_alt: Cover of the TAMU Formula Electric brand guidelines
+card_crop:
+  x: center
+  y: upper
+  zoom: none
 sections:
   - text: >-
       As a part of my role on the Texas A&M marketing team, I decided to create

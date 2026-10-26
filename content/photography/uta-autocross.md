@@ -3,6 +3,10 @@ title: UTA Autocross 2025
 order: 5
 cover: /media/photography/uta-autocross/cover.webp
 cover_alt: Car 258 on the autocross course
+cover_crop:
+  x: center
+  y: middle
+  zoom: none
 photos:
   - image: /media/photography/uta-autocross/uta-autocross-01.webp
     alt: Car 258 on the autocross course with trees behind
