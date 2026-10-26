@@ -19,10 +19,10 @@ photos:
   - image: /media/dsc04206.jpg
     alt: The drivers helmet sitting on the nosecone of AME26
     feature: false
-  - image: /media/dsc04397.jpg
-    alt: The Chief Engineer excited after passing inspection
-    feature: false
   - image: /media/dsc05015.jpg
     alt: View of the stands from the race track
     feature: false
+  - image: /media/dsc04397.jpg
+    alt: The Chief Engineer excited after passing inspection
+    feature: true
 ---
