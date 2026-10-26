@@ -13,6 +13,7 @@ import argparse
 import datetime as dt
 import hashlib
 import json
+import os
 import re
 import shutil
 from pathlib import Path
@@ -80,6 +81,33 @@ def load_collection(folder: Path) -> list[dict]:
         items.append(data)
     items.sort(key=lambda d: (d.get("order") if d.get("order") is not None else 999, d.get("title", "")))
     return items
+
+
+def check_media(content) -> None:
+    """Stop early, naming every photo or video the content uses that isn't in media/."""
+    found: list[str] = []
+
+    def walk(value):
+        if isinstance(value, dict):
+            for v in value.values():
+                walk(v)
+        elif isinstance(value, list):
+            for v in value:
+                walk(v)
+        elif isinstance(value, str) and value.strip().startswith("/media/"):
+            found.append(value.strip())
+
+    walk(content)
+    missing = sorted({src for src in found if not MediaPipeline.source(src).exists()})
+    if not missing:
+        return
+    in_actions = os.environ.get("GITHUB_ACTIONS") == "true"
+    for src in missing:
+        rel = src.lstrip("/")
+        folder, name = rel.rsplit("/", 1)
+        line = f"Missing file: {rel} (upload {name} into the {folder} folder)"
+        print(f"::error::{line}" if in_actions else line)
+    raise SystemExit(f"{len(missing)} file(s) missing from the media folder, listed above.")
 
 
 # ----------------------------------------------------------------- images ----
@@ -226,6 +254,8 @@ def build(preview: bool = False, out: Path | None = None) -> Path:
     illustrations = load_yaml(CONTENT / "illustrations.yml")
     albums = load_collection(CONTENT / "photography")
     projects = load_collection(CONTENT / "projects")
+
+    check_media([site, home, merch, illustrations, albums, projects])
 
     work = {w.get("section"): w for w in home.get("work", []) if w.get("section")}
     for key, (path, title) in SECTIONS.items():
