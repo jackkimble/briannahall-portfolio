@@ -1,5 +1,6 @@
 ---
 title: Michigan 2026
+order: 1
 cover: /media/dsc05747.jpg
 cover_alt: Team pushing AME26 to the next event
 photos:
