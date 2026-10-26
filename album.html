@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% set title = album.title ~ " · Photography" %}
+{% set description = album.intro or (album.title ~ ": photography by " ~ site.name ~ ".") %}
+{% block main %}
+<header class="page-head page-head--album">
+  <p class="crumb"><a href="{{ url('photography') }}">Photography</a></p>
+  <h1 class="page-title">{{ album.title | softbreak }}</h1>
+  <p class="page-meta">{{ album.count }} photograph{{ '' if album.count == 1 else 's' }}</p>
+  {% if album.intro %}<div class="page-lede prose">{{ md(album.intro) }}</div>{% endif %}
+</header>
+{% include "_gallery.html" %}
+{% if next_album %}
+<nav class="next" aria-label="Next album">
+  <a href="{{ url('photography/' ~ next_album.slug) }}">
+    <span class="label">Next album</span>
+    <span class="next__title">{{ next_album.title }}</span>
+  </a>
+</nav>
+{% endif %}
+{% endblock %}

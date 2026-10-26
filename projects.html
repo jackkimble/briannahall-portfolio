@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% set title = section.title %}
+{% set description = section.blurb %}
+{% block main %}
+<header class="page-head">
+  <h1 class="page-title">{{ section.title | softbreak }}</h1>
+  {% if section.blurb %}<p class="page-lede">{{ section.blurb }}</p>{% endif %}
+</header>
+<div class="projects">
+  {% for project in projects %}
+  <article class="project-card">
+    <a href="{{ url('brand-projects/' ~ project.slug) }}">
+      <span class="project-card__img">{{ img(project.card_image, project.card_alt, sizes="(min-width: 900px) 30vw, 92vw") }}</span>
+      <span class="project-card__title">{{ project.card_title or project.title }}</span>
+    </a>
+  </article>
+  {% endfor %}
+</div>
+{% endblock %}
