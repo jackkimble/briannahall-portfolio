@@ -6,7 +6,7 @@ cover_alt: Team pushing AME26 to the next event
 cover_crop:
   x: center
   y: top
-  zoom: none
+  zoom: little
 photos:
   - image: /media/dsc02917.jpg
     alt: Two members pushing the car by the steering wheel
