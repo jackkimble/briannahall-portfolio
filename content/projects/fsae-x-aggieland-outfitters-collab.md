@@ -18,12 +18,14 @@ sections:
     caption: " "
     layout: media-left
     autoplay: false
-  - media: /media/a22.jpg
+  - media: /media/dsc0182.jpg
     caption: " "
     layout: media-right
     autoplay: false
   - media: /media/a34.jpg
     caption: " "
     layout: media-left
+    autoplay: false
+  - media: /media/dsc07905.jpg
     autoplay: false
 ---
