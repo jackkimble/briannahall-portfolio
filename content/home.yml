@@ -1,17 +1,21 @@
 cover_image: /media/home/bluebonnets.webp
 cover_alt: Texas bluebonnets in bloom
-intro: Hi! My name is Brianna Hall, I’m a fourth year marketing student at Texas A&M University with a concentration in advertising strategy, and I currently work in graphic design. I have a passion for brand marketing, publishing and sports marketing, and I hope to pursue a career in one of these passions. Take a look around and feel free to contact me!
-quote: ''
-quote_source: ''
+intro: Howdy! My name is Brianna Hall, I’m a fourth year marketing student at
+  Texas A&M University with a concentration in advertising strategy, and I
+  currently work in graphic design. I have a passion for brand marketing,
+  publishing and sports marketing, and I hope to pursue a career in one of these
+  passions. Take a look around and feel free to contact me!
 work:
   - section: photography
     title: Photography
-    blurb: Testing days, studio photoshoots, the 2025 competition and UTA Autocross with Texas A&M Formula Electric.
+    blurb: Testing days, studio photoshoots, the 2025 competition and UTA Autocross
+      with Texas A&M Formula Electric.
     image: /media/photography/photoshoots/photoshoots-07.webp
     image_alt: The car lit in purple and blue studio light
   - section: brand-projects
     title: Brand Projects
-    blurb: Team guidelines, physical media designs, the team Instagram and custom race suits.
+    blurb: Team guidelines, physical media designs, the team Instagram and custom
+      race suits.
     image: /media/projects/race-suits/team.webp
     image_alt: Drivers in custom race suits standing with the car on the grass
   - section: merch
@@ -26,12 +30,30 @@ work:
     image_alt: “Need Gas? We Don’t!” design with a cartoon tire character
     image_fit: contain
 about_heading: About Me
-about: |-
-  I am currently a student at Texas A&M University and a dedicated member of the Texas A&M Formula Electric Marketing Team. During my time on this team, I volunteered for additional photography projects and designed merchandise for team competitions. Through collaboration with my teammates, I gained valuable experience and was later selected as the Traditional Media Lead. In this role, I oversee team merchandise and create both physical and digital graphics for recruitment and social media. I also introduced a feedback system for merchandise design, allowing student engineers to share their input and help us create designs that better reflect the team.
+about: >-
+  I am currently a student at Texas A&M University and a dedicated member of the
+  Texas A&M Formula Electric Marketing Team. During my time on this team, I
+  volunteered for additional photography projects and designed merchandise for
+  team competitions. Through collaboration with my teammates, I gained valuable
+  experience and was later selected as the Traditional Media Lead. In this role,
+  I oversee team merchandise and create both physical and digital graphics for
+  recruitment and social media. I also introduced a feedback system for
+  merchandise design, allowing student engineers to share their input and help
+  us create designs that better reflect the team.
 
-  I am currently a Junior Graphic Designer at Aggieland Outfitters where I am a part of a team that creates five to ten merchandise designs weekly. This role has taught me how to create and design print ready files, and the importance of understanding your client. Through this role, I am able to track current trends and create designs that will bring the store the most sales.
 
-  Beyond academics, I love expressing creativity through painting and cooking. When I’m not working on a marketing project or creating art, you’ll probably find me spending time with my dog, Charlie, or reading a good book. I am always eager to learn, collaborate, and explore new opportunities in the world of marketing and advertising!
+  I am currently a Junior Graphic Designer at Aggieland Outfitters where I am a
+  part of a team that creates five to ten merchandise designs weekly. This role
+  has taught me how to create and design print ready files, and the importance
+  of understanding your client. Through this role, I am able to track current
+  trends and create designs that will bring the store the most sales.
+
+
+  Beyond academics, I love expressing creativity through painting and cooking.
+  When I’m not working on a marketing project or creating art, you’ll probably
+  find me spending time with my dog, Charlie, or reading a good book. I am
+  always eager to learn, collaborate, and explore new opportunities in the world
+  of marketing and advertising!
 about_video: /media/home/formula-electric-video.mp4
 about_video_poster: /media/home/formula-electric-video-poster.webp
 skills_heading: Skills
