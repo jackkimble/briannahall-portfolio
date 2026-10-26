@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% set title = "" %}
+{% set description = site.description %}
+{% block main %}
+<section class="cover">
+  <div class="cover__text">
+    <p class="label">{{ site.title }}</p>
+    <h1 class="cover__name"><span>{{ site.name.split(' ')[0] }}</span> <span class="cover__name-last">{{ site.name.split(' ')[1:] | join(' ') }}</span></h1>
+    <p class="cover__intro">{{ home.intro }}</p>
+    <p class="cover__links">
+      <a class="link-arrow" href="#work">See the work</a>
+      <a class="link-arrow" href="#contact">Get in touch</a>
+    </p>
+  </div>
+  {% if home.cover_image %}
+  <figure class="cover__photo">
+    {{ img(home.cover_image, home.cover_alt, sizes="(min-width: 900px) 40vw, 92vw", loading="eager", priority=True) }}
+  </figure>
+  {% endif %}
+</section>
+
+{% if home.quote %}
+<section class="quote">
+  <blockquote>
+    <p>{{ home.quote }}</p>
+    {% if home.quote_source %}<footer>{{ home.quote_source }}</footer>{% endif %}
+  </blockquote>
+</section>
+{% endif %}
+
+<section class="work" id="work" aria-labelledby="work-title">
+  <h2 class="section-title" id="work-title">The work</h2>
+  <div class="work__grid">
+    {% for key, label, href in nav %}
+    {% set w = work[key] %}
+    <article class="work-item">
+      <a class="work-item__link" href="{{ href }}">
+        {% if w.image %}<span class="work-item__img{% if w.image_fit == 'contain' %} work-item__img--contain{% endif %}">{{ img(w.image, w.image_alt, sizes="(min-width: 900px) 44vw, 92vw") }}</span>{% endif %}
+        <span class="work-item__title">{{ w.title }}</span>
+      </a>
+      {% if w.blurb %}<p class="work-item__blurb">{{ w.blurb }}</p>{% endif %}
+    </article>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="about" id="about" aria-labelledby="about-title">
+  <div class="about__text">
+    <h2 class="section-title" id="about-title">{{ home.about_heading or "About Me" }}</h2>
+    <div class="prose">{{ md(home.about) }}</div>
+  </div>
+  {% if home.about_video %}
+  <figure class="about__media">
+    <video class="about__video" src="{{ file_url(home.about_video) }}" poster="{{ poster(home.about_video_poster) }}" muted loop playsinline preload="metadata" data-autoplay aria-label="Texas A&M Formula Electric video"></video>
+  </figure>
+  {% elif home.about_image %}
+  <figure class="about__media">{{ img(home.about_image, home.about_image_alt, sizes="(min-width: 900px) 34vw, 92vw") }}</figure>
+  {% endif %}
+</section>
+
+<section class="skills" id="skills" aria-labelledby="skills-title">
+  <h2 class="section-title" id="skills-title">{{ home.skills_heading or "Skills" }}</h2>
+  <p class="skills__text">{{ home.skills_text }}</p>
+  {% if home.skills %}
+  <ul class="skills__logos">
+    {% for s in home.skills %}
+    <li>
+      {% if s.logo %}<span class="skills__logo">{{ img(s.logo, "", sizes="120px") }}</span>{% endif %}
+      <span class="skills__name">{{ s.name }}</span>
+    </li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+</section>
+{% endblock %}

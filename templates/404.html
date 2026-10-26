@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% set title = "Page not found" %}
+{% block main %}
+<header class="page-head page-head--missing">
+  <h1 class="page-title">This page isn’t here.</h1>
+  <p class="page-lede">It may have moved. The <a href="{{ url('') }}">home page</a> has links to everything else.</p>
+</header>
+{% endblock %}
