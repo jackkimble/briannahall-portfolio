@@ -20,22 +20,58 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v5
+
+      - name: Find the site files
+        id: site
+        run: |
+          file=$(git ls-files | grep -E '(^|/)build\.py$' | head -n 1 || true)
+          if [ -z "$file" ]; then
+            echo "::error::build.py is not in the repository. Upload it, then run this again."
+            exit 1
+          fi
+          dir=$(dirname "$file")
+          echo "dir=$dir" >> "$GITHUB_OUTPUT"
+          echo "Site files are in: $dir"
+          missing=""
+          for f in requirements.txt content templates assets media; do
+            if [ ! -e "$dir/$f" ]; then
+              echo "::error::'$f' is missing. Upload it into the same place as build.py ($dir)."
+              missing=1
+            fi
+          done
+          if [ -n "$missing" ]; then exit 1; fi
+
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
-          cache: pip
-      - run: pip install -r requirements.txt
+
+      - name: Install tools
+        working-directory: ${{ steps.site.outputs.dir }}
+        run: pip install -r requirements.txt
+
       - name: Reuse resized photos from earlier builds
         uses: actions/cache@v4
         with:
-          path: .cache
-          key: images-${{ hashFiles('media/**') }}
+          path: ${{ steps.site.outputs.dir }}/.cache
+          key: images-${{ hashFiles('**/media/**') }}
           restore-keys: images-
-      - run: python build.py
+
+      - name: Build the site
+        working-directory: ${{ steps.site.outputs.dir }}
+        run: |
+          set +e
+          python build.py > build.log 2>&1
+          status=$?
+          cat build.log
+          if [ $status -ne 0 ]; then
+            echo "::error::$(grep -v '^[[:space:]]*$' build.log | tail -n 1)"
+            exit $status
+          fi
+
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: _site
+          path: ${{ steps.site.outputs.dir }}/_site
 
   deploy:
     needs: build
