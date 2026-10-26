@@ -12,7 +12,9 @@
 <meta property="og:title" content="{{ page_title }}">
 <meta property="og:description" content="{{ description or site.description }}">
 <meta property="og:type" content="website">
-{% if site.site_url and og_image %}<meta property="og:image" content="{{ site.site_url.rstrip('/') }}/{{ og_image }}">{% endif %}
+{% set og_src = share_image(og_image or home.cover_image) %}
+{% if og_src %}<meta property="og:image" content="{{ og_src }}">{% endif %}
+{% if site.site_url and not preview %}<meta property="og:url" content="{{ site.site_url.rstrip('/') }}/{{ page_path }}">{% endif %}
 <meta name="theme-color" content="#faf3f0">
 {% if not preview %}<link rel="icon" href="{{ asset('favicon.svg') }}" type="image/svg+xml">{% endif %}
 <link rel="preconnect" href="https://fonts.googleapis.com">

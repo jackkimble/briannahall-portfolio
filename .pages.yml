@@ -378,4 +378,4 @@ content:
       - name: site_url
         label: Website address
         type: string
-        description: For example https://briannahall.design — used for link previews when the site is shared.
+        description: For example https://briannahalldesign.com — used for link previews when the site is shared.

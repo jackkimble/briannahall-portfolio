@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% set title = project.card_title or project.title %}
 {% set description = (project.sections[0].text if project.sections and project.sections[0].text else project.title) | striptags | truncate(155) %}
+{% set og_image = project.card_image %}
 {% block main %}
 <header class="page-head page-head--project">
   <p class="crumb"><a href="{{ url('brand-projects') }}">Brand Projects</a></p>

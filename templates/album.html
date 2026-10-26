@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% set title = album.title ~ " · Photography" %}
 {% set description = album.intro or (album.title ~ ": photography by " ~ site.name ~ ".") %}
+{% set og_image = album.cover %}
 {% block main %}
 <header class="page-head page-head--album">
   <p class="crumb"><a href="{{ url('photography') }}">Photography</a></p>

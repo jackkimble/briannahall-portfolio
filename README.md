@@ -28,17 +28,16 @@ build.py       turns content/ + media/ into the finished site in _site/
 3. The site appears at `https://<your-username>.github.io/briannahall-portfolio/`.
 
 ### 3. Connect the domain
-Suggested: **briannahall.design** (her name, her field). Backup: **briannahallcreative.com**.
-`briannahall.com` is already taken. Both suggestions were unregistered on 26 Oct 2026.
+The site’s domain is **briannahalldesign.com**, registered at GoDaddy.
 
-1. Buy it from any registrar (Cloudflare, Porkbun or Namecheap all work).
-2. In the registrar’s DNS settings add:
-   - four **A** records for `@` → `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`
-   - one **CNAME** record for `www` → `<your-username>.github.io`
-3. In GitHub: **Settings → Pages → Custom domain** → enter the domain → Save. Once the check
-   passes, tick **Enforce HTTPS** (can take up to an hour).
-4. In the editor, set **Contact & site details → Website address** to `https://briannahall.design`
-   so shared links show a preview image.
+1. In GoDaddy’s DNS records for the domain:
+   - remove the existing **A** record for `@` (GoDaddy’s parking page)
+   - add four **A** records for `@` → `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`
+   - set the **CNAME** record for `www` → `jackkimble.github.io`
+2. In GitHub: **Settings → Pages → Custom domain** → `briannahalldesign.com` → Save. Once the
+   check passes, tick **Enforce HTTPS** (can take up to an hour).
+3. `content/site.yml` already has `site_url: https://briannahalldesign.com`, which shared links
+   use for their preview image.
 
 ### 4. Give Brianna the editor
 1. Go to **app.pagescms.org**, sign in with GitHub and install the Pages CMS app on the repository.

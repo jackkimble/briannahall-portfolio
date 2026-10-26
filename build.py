@@ -313,6 +313,13 @@ def build(preview: bool = False, out: Path | None = None) -> Path:
             info = media.image(src)
             return asset(info.get("largest") or info["src"])
 
+        def share_image(src):
+            """Absolute address of an image, for link previews in texts and social posts."""
+            if not src or not site.get("site_url") or media.is_video(src):
+                return ""
+            info = media.image(src)
+            return f"{site['site_url'].rstrip('/')}/{info.get('largest') or info['src']}"
+
         def ratio(src):
             info = media.image(src)
             return round(info["w"] / info["h"], 4) if info.get("w") else 1
@@ -335,7 +342,7 @@ def build(preview: bool = False, out: Path | None = None) -> Path:
         nav = [(key, work[key]["title"], url(path)) for key, (path, _) in SECTIONS.items()]
         html = env.get_template(template).render(
             site=site, home=home, work=work, nav=nav, albums=albums, projects=projects,
-            url=url, asset=asset, img=img, full=full, ratio=ratio, file_url=file_url, poster=poster,
+            url=url, asset=asset, img=img, full=full, ratio=ratio, file_url=file_url, poster=poster, share_image=share_image,
             md=md, is_video=is_video, tel=tel, preview=preview, bare=(preview and page_path == ""),
             inline_css=Markup(css) if preview else None, inline_js=Markup(js) if preview else None,
             year=dt.date.today().year, page_path=page_path, **ctx,
