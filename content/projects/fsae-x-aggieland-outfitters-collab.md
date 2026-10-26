@@ -14,19 +14,22 @@ sections:
     media: /media/a4.jpg
     media_alt: " "
     layout: media-right
+    frame: none
     autoplay: false
   - media: /media/a2.jpg
-    caption: " "
     layout: media-left
+    frame: none
     autoplay: false
   - media: /media/dsc0182.jpg
-    caption: " "
     layout: media-right
+    frame: none
     autoplay: false
   - media: /media/a34.jpg
-    caption: " "
     layout: media-left
+    frame: none
     autoplay: false
   - media: /media/dsc07905.jpg
+    layout: media-right
+    frame: none
     autoplay: false
 ---
