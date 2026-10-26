@@ -25,6 +25,9 @@ Tick **Show this photo big, on its own row** for your favorites; the rest arrang
 ## Add a brand project
 **Brand projects** → add a new entry. Fill in the title, a card image and a position. Then add
 **Sections**: each one is some writing with a photo or video beside it.
+- **Page style** sets the whole page’s look. “Writing beside each photo” pairs each section’s
+  writing with its photo. “Photo collage” puts all the writing at the top and arranges the
+  photos into rows below it, like your Merch Designs page.
 - **Layout** chooses which side the photo sits on, or full width under the writing.
 - **Frame** wraps a photo or video in a phone or laptop, like your Instagram and guideline pages.
 - For videos, add a **Video still** (a screenshot) and keep files under 20 MB.

@@ -2,6 +2,7 @@
 title: FSAE x Aggieland Outfitters Collab
 order: 1
 card_image: /media/a44-1.jpg
+page_style: collage
 sections:
   - text: "My formula team partnered with a local college merchendise designer and
       distributer, Aggieland Outfitters. Myself, other members of my team, and

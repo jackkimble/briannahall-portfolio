@@ -8,6 +8,32 @@
   <h1 class="page-title">{{ project.title | softbreak }}</h1>
 </header>
 
+{% if collage %}
+{# Photo collage style: the writing on top, then every photo arranged like Merch Designs #}
+{% if collage.texts %}
+<div class="page-head project-intro">
+  <div class="prose">{% for t in collage.texts %}{{ md(t) }}{% endfor %}</div>
+</div>
+{% endif %}
+{% set rows = collage.rows %}
+{% include "_gallery.html" %}
+{% if collage.videos %}
+<div class="story">
+  {% for s in collage.videos %}
+  {% set frame = s.frame or 'none' %}
+  <section class="story__block story__block--media-full story__block--no-text">
+    <figure class="story__media frame frame--{{ frame }}">
+      <div class="frame__screen">
+        <video src="{{ file_url(s.media) }}" {% if s.poster %}poster="{{ poster(s.poster) }}"{% endif %} playsinline preload="metadata"
+          {% if s.autoplay %}muted loop data-autoplay{% else %}controls{% endif %} aria-label="{{ s.media_alt or 'Project video' }}"></video>
+      </div>
+      {% if s.caption %}<figcaption>{{ s.caption }}</figcaption>{% endif %}
+    </figure>
+  </section>
+  {% endfor %}
+</div>
+{% endif %}
+{% else %}
 <div class="story">
   {% for s in project.sections or [] %}
   {% set layout = s.layout or 'media-right' %}
@@ -32,6 +58,7 @@
   </section>
   {% endfor %}
 </div>
+{% endif %}
 
 {% if next_project %}
 <nav class="next" aria-label="Next project">

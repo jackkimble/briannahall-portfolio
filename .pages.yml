@@ -216,6 +216,16 @@ content:
       - name: card_alt
         label: Card image description
         type: string
+      - name: page_style
+        label: Page style
+        type: select
+        description: “Writing beside each photo” pairs each section’s writing with its photo. “Photo collage” puts all the writing at the top and arranges every photo into rows below it, like the Merch Designs page.
+        options:
+          values:
+            - name: story
+              label: Writing beside each photo
+            - name: collage
+              label: Photo collage
       - name: sections
         label: Sections
         description: Each section is some writing with a photo or video beside it. Add, remove or drag sections to reorder.

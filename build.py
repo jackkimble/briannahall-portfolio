@@ -54,7 +54,7 @@ SECTIONS = {
 # ---------------------------------------------------------------- content ----
 def load_yaml(path: Path) -> dict:
     with path.open(encoding="utf-8") as f:
-        return yaml.safe_load(f) or {}
+        return tidy(yaml.safe_load(f) or {})
 
 
 def load_front_matter(path: Path) -> dict:
@@ -71,10 +71,21 @@ def slug_of(path: Path) -> str:
     return re.sub(r"[^a-z0-9-]+", "-", path.stem.lower()).strip("-")
 
 
+def tidy(value):
+    """Trim stray spaces the editor can leave behind, so a blank caption counts as empty."""
+    if isinstance(value, dict):
+        return {k: tidy(v) for k, v in value.items()}
+    if isinstance(value, list):
+        return [tidy(v) for v in value]
+    if isinstance(value, str):
+        return value.strip()
+    return value
+
+
 def load_collection(folder: Path) -> list[dict]:
     items = []
     for path in sorted(folder.glob("*.md")):
-        data = load_front_matter(path)
+        data = tidy(load_front_matter(path))
         if data.get("hidden"):
             continue
         data["slug"] = slug_of(path)
@@ -362,8 +373,19 @@ def build(preview: bool = False, out: Path | None = None) -> Path:
     render("projects.html", "brand-projects/", current="brand-projects", section=work["brand-projects"])
     for i, project in enumerate(projects):
         nxt = projects[(i + 1) % len(projects)] if len(projects) > 1 else None
+        sections = [s for s in project.get("sections") or [] if s]
+        collage = None
+        if project.get("page_style") == "collage":
+            # All the writing goes on top; every photo joins one collage, like Merch Designs.
+            photos = [{"image": s["media"], "alt": s.get("media_alt") or "", "caption": s.get("caption") or ""}
+                      for s in sections if s.get("media") and not media.is_video(s["media"])]
+            collage = {
+                "texts": [s["text"] for s in sections if s.get("text")],
+                "rows": compose_rows(photos, media),
+                "videos": [s for s in sections if s.get("media") and media.is_video(s["media"])],
+            }
         render("project.html", f"brand-projects/{project['slug']}/", current="brand-projects", project=project,
-               next_project=nxt, section=work["brand-projects"])
+               collage=collage, next_project=nxt, section=work["brand-projects"])
     render("merch.html", "merch/", current="merch", page=merch, rows=compose_rows(merch.get("photos") or [], media),
            section=work["merch"])
     render("illustrations.html", "illustrations/", current="illustrations", page=illustrations, section=work["illustrations"])
