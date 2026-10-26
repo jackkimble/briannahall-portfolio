@@ -4,6 +4,10 @@ Everything on your site can be changed from **app.pagescms.org**. Sign in with t
 invitation link, then open the site. The menu on the left lists each part of the site.
 When you click **Save**, the live site updates about a minute later.
 
+If a change doesn't show up, your browser may be showing a saved copy of the page (it can keep
+one for up to 10 minutes). Press **Ctrl + Shift + R** (Windows) or **Cmd + Shift + R** (Mac) to
+load the newest version.
+
 ## Add photos to an album
 1. **Photo albums** → pick the album.
 2. Under **Photos**, click the add button, then upload or pick a photo.
