@@ -1,0 +1,381 @@
+# Pages CMS settings: this file decides what Brianna sees in the editor at app.pagescms.org.
+# Each block below becomes one item in the editor's sidebar.
+
+media:
+  input: media
+  output: /media
+  rename: safe
+
+content:
+  # ------------------------------------------------------------------ Home page
+  - name: home
+    label: Home page
+    type: file
+    path: content/home.yml
+    format: yaml
+    fields:
+      - name: cover_image
+        label: Cover photo
+        type: image
+        description: The photo beside your name at the top of the home page. Any size works.
+      - name: cover_alt
+        label: Cover photo description
+        type: string
+        description: A few words describing the photo, read aloud to people using screen readers.
+      - name: intro
+        label: Introduction
+        type: text
+        description: The paragraph under your name.
+      - name: quote
+        label: Quote
+        type: text
+        description: Shown large on a blue band. Leave empty to hide the band. Quotation marks are added for you.
+      - name: quote_source
+        label: Quote source
+        type: string
+      - name: work
+        label: Work sections
+        description: The four tiles under “The work”. These titles and blurbs also appear at the top of each section’s page.
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{title}"
+        fields:
+          - name: section
+            label: Which section
+            type: select
+            options:
+              values:
+                - name: photography
+                  label: Photography
+                - name: brand-projects
+                  label: Brand Projects
+                - name: merch
+                  label: Merch Designs
+                - name: illustrations
+                  label: Illustrations
+          - name: title
+            label: Title
+            type: string
+          - name: blurb
+            label: Short description
+            type: text
+          - name: image
+            label: Tile image
+            type: image
+          - name: image_alt
+            label: Tile image description
+            type: string
+          - name: image_fit
+            label: Image fit
+            type: select
+            description: “Fill the tile” crops the image to fit. “Show the whole image” puts it on a mat, which suits posters and graphics.
+            options:
+              values:
+                - name: cover
+                  label: Fill the tile
+                - name: contain
+                  label: Show the whole image
+      - name: about_heading
+        label: About heading
+        type: string
+      - name: about
+        label: About me
+        type: rich-text
+        options:
+          format: markdown
+          media: false
+      - name: about_video
+        label: About video
+        type: file
+        description: Plays silently on a loop beside your About text. Use an .mp4 under 20 MB. Remove it to show a photo instead.
+        options:
+          categories: [video]
+      - name: about_video_poster
+        label: About video still
+        type: image
+        description: The image shown while the video loads.
+      - name: about_image
+        label: About photo (used only when there is no video)
+        type: image
+      - name: about_image_alt
+        label: About photo description
+        type: string
+      - name: skills_heading
+        label: Skills heading
+        type: string
+      - name: skills_text
+        label: Skills sentence
+        type: text
+      - name: skills
+        label: Skill logos
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{name}"
+        fields:
+          - name: name
+            label: Name
+            type: string
+          - name: logo
+            label: Logo
+            type: image
+
+  # ------------------------------------------------------------- Photo albums
+  - name: photography
+    label: Photo albums
+    type: collection
+    path: content/photography
+    format: yaml-frontmatter
+    filename: "{primary}.md"
+    view:
+      fields: [title, order]
+      primary: title
+      sort: [order, title]
+      default:
+        sort: order
+        order: asc
+    fields:
+      - name: title
+        label: Album name
+        type: string
+        required: true
+      - name: order
+        label: Position
+        type: number
+        description: Albums are listed from the lowest number to the highest.
+      - name: cover
+        label: Cover photo
+        type: image
+        required: true
+      - name: cover_alt
+        label: Cover photo description
+        type: string
+      - name: intro
+        label: Introduction (optional)
+        type: text
+        description: A sentence or two shown under the album name.
+      - name: photos
+        label: Photos
+        description: Drag photos to reorder them. The layout arranges them into rows automatically.
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{index}. {alt}"
+        fields:
+          - name: image
+            label: Photo
+            type: image
+            required: true
+          - name: alt
+            label: Description
+            type: string
+            description: A few words describing the photo, for screen readers and search engines.
+          - name: caption
+            label: Caption (optional)
+            type: string
+            description: Shown under the photo.
+          - name: feature
+            label: Show this photo big, on its own row
+            type: boolean
+
+  # ----------------------------------------------------------- Brand projects
+  - name: projects
+    label: Brand projects
+    type: collection
+    path: content/projects
+    format: yaml-frontmatter
+    filename: "{primary}.md"
+    view:
+      fields: [title, order]
+      primary: title
+      sort: [order, title]
+      default:
+        sort: order
+        order: asc
+    fields:
+      - name: title
+        label: Project title
+        type: string
+        required: true
+      - name: card_title
+        label: Short title
+        type: string
+        description: Used on the Brand Projects page and in the browser tab. Leave empty to use the project title.
+      - name: order
+        label: Position
+        type: number
+        description: Projects are listed from the lowest number to the highest.
+      - name: card_image
+        label: Card image
+        type: image
+        required: true
+      - name: card_alt
+        label: Card image description
+        type: string
+      - name: sections
+        label: Sections
+        description: Each section is some writing with a photo or video beside it. Add, remove or drag sections to reorder.
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "Section {index}"
+        fields:
+          - name: text
+            label: Writing
+            type: rich-text
+            options:
+              format: markdown
+              media: false
+          - name: media
+            label: Photo or video
+            type: file
+            options:
+              categories: [image, video]
+          - name: poster
+            label: Video still (videos only)
+            type: image
+          - name: media_alt
+            label: Photo or video description
+            type: string
+          - name: caption
+            label: Caption (optional)
+            type: string
+          - name: layout
+            label: Layout
+            type: select
+            options:
+              values:
+                - name: media-right
+                  label: Photo on the right
+                - name: media-left
+                  label: Photo on the left
+                - name: media-full
+                  label: Photo full width, below the writing
+          - name: frame
+            label: Frame
+            type: select
+            options:
+              values:
+                - name: none
+                  label: No frame
+                - name: phone
+                  label: Phone
+                - name: laptop
+                  label: Laptop
+          - name: autoplay
+            label: Play the video silently on a loop
+            type: boolean
+            description: For screen recordings and clips without sound. Leave off for reels with audio.
+
+  # ------------------------------------------------------------- Merch designs
+  - name: merch
+    label: Merch designs
+    type: file
+    path: content/merch.yml
+    format: yaml
+    fields:
+      - name: heading
+        label: Page heading
+        type: string
+      - name: intro
+        label: Introduction (optional)
+        type: text
+      - name: photos
+        label: Photos
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{index}. {alt}"
+        fields:
+          - name: image
+            label: Photo
+            type: image
+            required: true
+          - name: alt
+            label: Description
+            type: string
+          - name: caption
+            label: Caption (optional)
+            type: string
+          - name: feature
+            label: Show this photo big, on its own row
+            type: boolean
+
+  # ----------------------------------------------------------- Illustrations
+  - name: illustrations
+    label: Illustrations & designs
+    type: file
+    path: content/illustrations.yml
+    format: yaml
+    fields:
+      - name: heading
+        label: Page heading
+        type: string
+      - name: intro
+        label: Introduction (optional)
+        type: text
+      - name: pieces
+        label: Pieces
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{index}. {alt}"
+        fields:
+          - name: image
+            label: Image
+            type: image
+            required: true
+          - name: alt
+            label: Description
+            type: string
+          - name: caption
+            label: Caption (optional)
+            type: string
+
+  # ---------------------------------------------------------- Contact details
+  - name: site
+    label: Contact & site details
+    type: file
+    path: content/site.yml
+    format: yaml
+    fields:
+      - name: name
+        label: Your name
+        type: string
+      - name: title
+        label: Site title
+        type: string
+        description: Shown above your name on the home page.
+      - name: description
+        label: Search engine description
+        type: text
+        description: One or two sentences that appear under your site in Google results.
+      - name: email
+        label: Email
+        type: string
+      - name: phone
+        label: Phone
+        type: string
+      - name: location
+        label: Location
+        type: string
+      - name: linkedin
+        label: LinkedIn link
+        type: string
+      - name: contact_heading
+        label: Contact label
+        type: string
+      - name: contact_line
+        label: Contact headline
+        type: string
+      - name: site_url
+        label: Website address
+        type: string
+        description: For example https://briannahall.design — used for link previews when the site is shared.
