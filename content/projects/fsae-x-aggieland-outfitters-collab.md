@@ -13,7 +13,7 @@ sections:
       work, in design and photgraphy, is featured below. "
     media: /media/a4.jpg
     media_alt: " "
-    layout: media-right
+    layout: media-full
     frame: none
     autoplay: false
   - media: /media/a2.jpg
