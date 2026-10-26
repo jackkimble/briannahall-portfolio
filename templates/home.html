@@ -35,7 +35,7 @@
     {% set w = work[key] %}
     <article class="work-item">
       <a class="work-item__link" href="{{ href }}">
-        {% if w.image %}<span class="work-item__img{% if w.image_fit == 'contain' %} work-item__img--contain{% endif %}">{{ img(w.image, w.image_alt, sizes="(min-width: 900px) 44vw, 92vw") }}</span>{% endif %}
+        {% if w.image %}<span class="work-item__img{% if w.image_fit == 'contain' %} work-item__img--contain{% endif %}">{{ img(w.image, w.image_alt, sizes="(min-width: 1000px) 22vw, (min-width: 560px) 46vw, 92vw") }}</span>{% endif %}
         <span class="work-item__title">{{ w.title }}</span>
       </a>
       {% if w.blurb %}<p class="work-item__blurb">{{ w.blurb }}</p>{% endif %}
