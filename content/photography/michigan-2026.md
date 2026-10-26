@@ -5,7 +5,7 @@ cover: /media/dsc05747.jpg
 cover_alt: Team pushing AME26 to the next event
 cover_crop:
   x: center
-  y: middle
+  y: bottom
   zoom: none
 photos:
   - image: /media/dsc02917.jpg
