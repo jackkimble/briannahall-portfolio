@@ -42,7 +42,7 @@ sections:
   - media: /media/projects/brand-guidelines/logo-options.webp
     media_alt: "Team Logo Options page: primary and secondary logos and social media
       profile combinations"
-    layout: media-full
+    layout: media-right
     frame: none
     autoplay: false
 ---
