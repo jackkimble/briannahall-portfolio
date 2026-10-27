@@ -30,7 +30,9 @@
   --max: 1280px;
   --gap: clamp(10px, 1.2vw, 16px);
   --radius: 6px;
-  --wave-frame: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M0 5.5C9 1.5 18 .8 29 3.6S50 9.4 62 6.2 85 .2 100 3.8V96.2C91 99.4 80 99.6 69 96.6S48 90.8 36 93.8 13 99.8 0 96Z'/%3E%3C/svg%3E");
+  /* The wavy edge on the home cover photo and its blue shadow (both use this one shape).
+     Numbers near 0 and 100 are the wave's dips: closer to the edge = gentler wave. */
+  --wave-frame: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M0 2.75C9 .75 18 .4 29 1.8S50 4.7 62 3.1 85 .1 100 1.9V98.1C91 99.7 80 99.8 69 98.3S48 95.4 36 96.9 13 99.9 0 98Z'/%3E%3C/svg%3E");
   color-scheme: light;
 }
 
